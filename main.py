@@ -4,6 +4,8 @@ import nltk
 nltk.download('brown')
 nltk.download('words')
 
+correctly_guessed_letters = ""
+
 while True:
     difficulty = input("Please select a difficulty (1, 2, 3 or q to quit): ")
 
@@ -42,11 +44,15 @@ while True:
     while True:
         letter_guess = input("Guess a letter: ")
 
-        in_letter = [i for i, letter in enumerate(final_word) if letter == letter_guess]
+        in_letter = [i + 1 for i, letter in enumerate(final_word) if letter == letter_guess]
 
         if in_letter:
-            positions = [str(index + 1) for index, letter in enumerate(final_word) if letter == letter_guess]
-            print(f"The letter '{letter_guess}' is the {' and '.join
-            (map(str, in_letter))}th letter in the word.")
+            print(f"The letter '{letter_guess}' is the {' and '.join(map(str, in_letter))}st letter in the word.")
+            correctly_guessed_letters += str(letter_guess)
+
+
+        if letter_guess == "what do i have so far":
+            print(correctly_guessed_letters)
+
         else:
-            print("I'm sorry but " + letter_guess + " is not in the word. Try again")
+            print(f"I'm sorry but '{letter_guess}' is not in the word. Try again")
