@@ -39,4 +39,14 @@ while True:
         print("Invalid input. Please enter 1, 2, 3, or q to quit.")
         continue
 
-    print(final_word)
+    while True:
+        letter_guess = input("Guess a letter: ")
+
+        in_letter = [i for i, letter in enumerate(final_word) if letter == letter_guess]
+
+        if in_letter:
+            positions = [str(index + 1) for index, letter in enumerate(final_word) if letter == letter_guess]
+            print(f"The letter '{letter_guess}' is the {' and '.join
+            (map(str, in_letter))}th letter in the word.")
+        else:
+            print("I'm sorry but " + letter_guess + " is not in the word. Try again")
