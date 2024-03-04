@@ -51,7 +51,7 @@ while True:
         letter_guess = input("Guess a letter: ")
 
         if letter_guess.lower() == "what do i have so far":
-            guessed_letters = [final_word[position - 1] for position in correctly_guessed_positions]
+            guessed_letters = [final_word[position - 1] for position in sorted(correctly_guessed_positions)]
             print("Guessed letters:", guessed_letters)
             continue
 
@@ -62,3 +62,7 @@ while True:
             correctly_guessed_positions.extend(in_letter)
         else:
             print(f"I'm sorry but '{letter_guess}' is not in the word. Try again")
+        
+        if set(correctly_guessed_positions) == set(range(1, len(final_word) + 1)):
+            print(f"Congratulations! You guessed the word! It was '{final_word}'!")
+            break
