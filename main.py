@@ -47,11 +47,9 @@ while True:
         print("Invalid input. Please enter 1, 2, 3, or q to quit.")
         continue
 
-    max_guesses = len(set(final_word)) + 5
-    remaining_guesses = max_guesses
     correctly_guessed_letters = set()
 
-    while remaining_guesses > 0:
+    while True:
         letter_guess = input("Guess a letter: ")
 
         if letter_guess.lower() == "what do i have so far":
@@ -71,12 +69,11 @@ while True:
             print(f"The letter '{letter_guess}' is in the word at position(s) {', '.join(map(str, positions))}{get_suffix(positions[0])}")
             correctly_guessed_letters.add(letter_guess)
         else:
-            remaining_guesses -= 1
-            print(f"I'm sorry but '{letter_guess}' is not in the word. You have {remaining_guesses} guesses remaining.")
+            print(f"I'm sorry but '{letter_guess}' is not in the word.")
             
         if set(correctly_guessed_letters) == set(final_word):
             print(f"Congratulations! You guessed the word '{final_word}' correctly!")
             break
 
-    if remaining_guesses == 0:
-        print(f"Sorry, you've run out of guesses. The word was '{final_word}'.")
+    if input("Do you want to play again? (yes/no): ").lower() != "yes":
+        break
